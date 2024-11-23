@@ -104,6 +104,33 @@
                                     </form>
                                 </td>
                             </tr>
+
+                            <!-- Form Peminjaman yang akan ditampilkan saat tombol Pinjam Buku ditekan -->
+                            <div id="pinjamForm{{ $item->id }}" class="hidden bg-white p-6 rounded-md shadow-lg mb-4">
+                                <h5 class="text-xl font-bold text-gray-700 mb-4">Pinjam Buku: {{ $item->judul }}</h5>
+                                <form action="{{ route('bukus.borrow', $item->id) }}" method="POST">
+                                    @csrf
+                                    @method('PUT')
+
+                                    <!-- Dropdown Anggota yang sudah terdaftar -->
+                                    <div class="mb-4">
+                                        <label for="anggota_id" class="block text-sm font-medium text-gray-700">Pilih Anggota</label>
+                                        <select name="anggota_id" id="anggota_id" class="mt-1 block w-full px-4 py-2 rounded-md border border-gray-300 focus:ring-indigo-500 focus:border-indigo-500" required>
+                                            <option value="" disabled selected>-- Pilih Anggota --</option>
+                                            @foreach ($anggotas as $a)
+                                                <option value="{{ $a->id }}">{{ $a->nama }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+
+                                    <!-- Submit Button -->
+                                    <div class="flex justify-between items-center">
+                                        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition">Pinjam Buku</button>
+                                        <button type="button" class="text-gray-500 hover:text-gray-700" onclick="hideForm('{{ $item->id }}')">Tutup</button>
+                                    </div>
+                                </form>
+                            </div>
+
                         @empty
                             <tr>
                                 <td colspan="6" class="py-3 px-6 text-center text-gray-500">Tidak ada data buku yang tersedia.</td>

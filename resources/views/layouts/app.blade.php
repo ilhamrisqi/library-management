@@ -19,7 +19,7 @@
     <div id="app">
         <nav class="bg-white shadow-md p-4">
             <div class="container mx-auto flex justify-between items-center">
-                <a href="{{ url('/') }}" class="font-semibold text-xl text-gray-800">{{ config('app.name', 'Laravel') }}</a>
+                <a href="{{ url('/buku') }}" class="font-semibold text-xl text-gray-800">{{ config('app.name', 'Laravel') }}</a>
                 <div>
                     @guest
                         <a href="{{ route('login') }}" class="text-blue-600">Login</a>
